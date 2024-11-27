@@ -1,101 +1,165 @@
-import Image from "next/image";
+import { Hero } from "./components/Layout/Home/Hero";
+
+import { AnalysisCard } from "./components/UI/Card/AnalysisCard";
+import { BiggerThan } from "./components/UI/Card/BiggerThan";
+import { PercentageCard } from "./components/UI/Card/PercentageCard";
+import { PieCard } from "./components/UI/Card/PieCard";
+import { ProfitCard } from "./components/UI/Card/ProfitCard";
+import { LineCard } from "./components/UI/Card/LineCard";
+
+const data = {
+  analysisCard01: {
+    card002: {
+      head: "نسبة رضا الموظفين",
+      bgUrl: "/assets/media/star.jpg",
+      value: 80,
+    },
+    card003: {
+      head: "جنس الموظفين",
+      data: {
+        colors: ["#EA5B38", "#F9F7F2"],
+        info: [
+          { label: "الذكور", value: 80 },
+          { label: "الاناث", value: 100 },
+        ],
+      },
+    },
+  },
+  analysisCard02: {
+    card001: {
+      head: "الحصة السوقية لراديو ثمانية",
+      value: "250,000",
+    },
+    card002: {
+      head: "الايرادات الشهري MRR",
+      value: "+289",
+      data: {
+        series: [2400, 1398, 9800, 3908, 4800, 3800, 4300],
+        labels: [
+          "Page A",
+          "Page B",
+          "Page C",
+          "Page D",
+          "Page E",
+          "Page F",
+          "Page G",
+        ],
+      },
+    },
+    card003: {
+      head: "عدد المستخدمين",
+      data: {
+        colors: ["#EA5B38", "#F9F7F2"],
+        info: [
+          { label: "المستخدمين النشطين", value: 80 },
+          { label: "المستخدمين التراكمي", value: 100 },
+        ],
+      },
+    },
+  },
+  analysisCard03: {
+    card001: {
+      head: "صافي الخسارة / سنوي",
+      bgUrl: "/assets/media/loss.jpg",
+      value: 24,
+    },
+    card002: {
+      head: "صافي الربح / سنوي",
+      bgUrl: "/assets/media/profit.jpg",
+      value: 24,
+    },
+    card003: {
+      name: "الايرادات",
+      data: {
+        annual: 24,
+        quarters: [
+          { name: "الربع الاول", value: 89 },
+          { name: "الربع الثاني", value: 60 },
+          { name: "الربع الثالث", value: 54 },
+          { name: "الربع الرابع", value: 73 },
+        ],
+      },
+    },
+    card004: {
+      head: "التكاليف",
+      value: "200+",
+      data: {
+        series: [2400, 1398, 9800, 3908, 4800, 3800, 4300],
+        labels: [
+          "Page A",
+          "Page B",
+          "Page C",
+          "Page D",
+          "Page E",
+          "Page F",
+          "Page G",
+        ],
+      },
+    },
+  },
+};
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+    <article className="px-48 pb-24">
+      <Hero />
+      <ul className="flex flex-wrap gap-6 justify-between">
+        <AnalysisCard
+          className="w-full"
+          name="ثقافة المنظومة"
+          description="اليوم, يعمل في شركة اكثر من ستين موظفا في الرياض والخبر وجدة والكويت والقاهرة ورام الله وعمان والمغرب والمانيا"
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+          <BiggerThan
+            first={{ number: 80, name: "عدد الموظفين" }}
+            second={{ number: 20, name: "عدد القادة" }}
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+          <PercentageCard
+            className="w-[calc(25%-0.5rem)]"
+            data={data.analysisCard01.card002}
+          />
+          <PieCard
+            className="w-[calc(25%-0.5rem)]"
+            data={data.analysisCard01.card003}
+          />
+        </AnalysisCard>
+        <AnalysisCard
+          className="flex-[0.5]"
+          name="الوصول"
+          description="اليوم, يعمل في شركة اكثر من ستين موظفا في الرياض والخبر وجدة والكويت والقاهرة ورام الله وعمان والمغرب والمانيا"
         >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
+          <div className="w-full h-60 px-8 py-12 flex flex-col justify-between gap-1 rounded-lg shadow-custom bg-[#FDFCFB] text-[#333]">
+            <h2 className="text-md font-medium">الحصة السوقية لراديو ثمانية</h2>
+            <h3 className="text-4xl font-bold">250,000</h3>
+            <p className="text-sm font-medium">ريأل سعودي</p>
+            <h6 className="text-xs font-medium pt-3">
+              ملاحظة تخص الحصة السوقية ان وجد
+            </h6>
+          </div>
+          <LineCard data={data.analysisCard02.card002} />
+          <PieCard
+            className="w-[calc(50%-0.5rem)]"
+            data={data.analysisCard02.card003}
           />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+        </AnalysisCard>
+        <AnalysisCard
+          className="flex-[0.5]"
+          name="الاعمال"
+          description="اليوم, يعمل في شركة اكثر من ستين موظفا في الرياض والخبر وجدة والكويت والقاهرة ورام الله وعمان والمغرب والمانيا"
         >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
+          <PercentageCard
+            className="w-[calc(50%-0.5rem)]"
+            color="#FF0000"
+            data={data.analysisCard03.card001}
           />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+          <PercentageCard
+            className="w-[calc(50%-0.5rem)]"
+            color="green"
+            data={data.analysisCard03.card002}
+          />
+          <ProfitCard data={data.analysisCard03.card003} />
+          <LineCard data={data.analysisCard03.card004} />
+        </AnalysisCard>
+      </ul>
+    </article>
   );
 }
